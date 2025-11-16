@@ -1,0 +1,9 @@
+# IDP Shared Modules
+# Ignore temp files
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+
+# Ignore backup files
+*.backup.*
