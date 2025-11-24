@@ -2407,65 +2407,6 @@ function parsePetrolimexBaRiaVungTau_XML(text, headers) {
     return result;
 }
 /**
- * [NEW] Parser cho hóa đơn XML của CÔNG TY CỔ PHẦN THƯƠNG MẠI HÓC MÔN.
- */
-function parseHocMonTrading_XML(text, headers) {
-    const result = [];
-
-    // --- Trích xuất thông tin ---
-    const sellerName = tryExtract(text, [/<NBan>.*?<Ten>(.*?)<\/Ten>/i]);
-    const sellerMst = tryExtract(text, [/<NBan>.*?<MST>(.*?)<\/MST>/i]);
-    
-    const invoiceDateRaw = tryExtract(text, [/<NLap>(.*?)<\/NLap>/i]);
-    let invoiceDate = "";
-    if (invoiceDateRaw) {
-        const dateParts = invoiceDateRaw.split('-');
-        invoiceDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
-    }
-    
-    const invoiceSeries = tryExtract(text, [/<KHHDon>(.*?)<\/KHHDon>/i]);
-    const invoiceNumber = tryExtract(text, [/<SHDon>(.*?)<\/SHDon>/i]);
-
-    const buyerName = tryExtract(text, [/<NMua>.*?<Ten>(.*?)<\/Ten>/i]);
-    const buyerMst = tryExtract(text, [/<NMua>.*?<MST>(.*?)<\/MST>/i]);
-    const buyerAddress = tryExtract(text, [/<NMua>.*?<DChi>(.*?)<\/DChi>/i]);
-    
-    // Lấy các giá trị tiền từ khối <TToan> và bỏ phần thập phân
-    const subtotalStr = tryExtract(text, [/<TgTCThue>(.*?)<\/TgTCThue>/i]).split('.')[0];
-    const vatAmountStr = tryExtract(text, [/<TgTThue>(.*?)<\/TgTThue>/i]).split('.')[0];
-    const totalAmountStr = tryExtract(text, [/<TgTTTBSo>(.*?)<\/TgTTTBSo>/i]).split('.')[0];
-
-    // Lấy Mã số bí mật từ thẻ <Fkey> ở cuối file
-    const lookupCode = tryExtract(text, [/<Fkey>(.*?)<\/Fkey>/i]);
-    const website = ""; // Không có trong XML
-
-    // --- Gán giá trị vào các cột ---
-    for (const header of headers) {
-        const h = header.toLowerCase().trim();
-        let value = "";
-
-        switch(h) {
-            case 'ký hiệu': value = invoiceSeries; break;
-            case 'ký ngày': value = invoiceDate; break;
-            case 'số hóa đơn': value = invoiceNumber; break;
-            case 'đơn vị bán': value = sellerName; break;
-            case 'mã số thuế bên bán': value = sellerMst ? `'${sellerMst}` : ''; break;
-            case 'cộng tiền hàng': value = subtotalStr; break;
-            case 'thuế suất gtgt số tiền': value = vatAmountStr; break;
-            case 'tổng tiền thanh toán': value = totalAmountStr; break;
-            case 'mã số bí mật': value = lookupCode; break;
-            case 'website': value = website; break;
-            case 'đơn vị mua': value = buyerName; break;
-            case 'mã số thuế bên mua': value = buyerMst ? `'${buyerMst}` : ''; break;
-            case 'địa chỉ bên mua': value = buyerAddress; break;
-            default: value = null; break;
-        }
-        
-        result.push(value !== null ? String(value).trim() : null);
-    }
-    return result;
-}
-/**
  * [NEW] Parser riêng cho hóa đơn PDF của CÔNG TY XĂNG DẦU KHU VỰC II (VNPT).
  */
 function parsePetrolimex0300555450_PDF(text, headers) {

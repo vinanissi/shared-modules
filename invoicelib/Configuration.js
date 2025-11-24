@@ -18,26 +18,18 @@ function getKeys() {
 // Cấu hình các parser
 function getParsers() {
   return [
-  { 
-    name: "", // Để trống tên
-    mst: "",   // Để trống MST
-    email: "parseWithGemini",
-    pdf: "parseWithGemini",
-    xml: "parseWithGemini",
-    website: "" 
-  },    
-  // Thêm parser sau dòng này
-  
-{ 
-  name: "CÔNG TY TNHH TM & DV SAGRI BAZAN", 
-  mst: "6400446946", 
-  email: "parseVnptSagriBazan_Text", 
-  pdf: "parseVnptSagriBazan_Text",
-  xml: "parseWithGemini", // Dùng AI cho XML (nếu có)
-  website: "https://xemhoadon.vnpt.vn/" 
-},
-  { 
-  name: "DOANH NGHIỆP TƯ NHÂN THƯƠNG MẠI DỊCH VỤ TRƯỜNG VẠN LÝ", 
+    // Thêm parser sau dòng này
+    
+    { 
+      name: "CÔNG TY TNHH TM & DV SAGRI BAZAN", 
+      mst: "6400446946", 
+      email: "parseVnptSagriBazan_Text", 
+      pdf: "parseVnptSagriBazan_Text",
+      xml: "parseWithGemini", // Dùng AI cho XML (nếu có)
+      website: "https://xemhoadon.vnpt.vn/" 
+    },
+    { 
+      name: "DOANH NGHIỆP TƯ NHÂN THƯƠNG MẠI DỊCH VỤ TRƯỜNG VẠN LÝ", 
   mst: "0311509061", 
   email: "parseWithGemini", // Dùng AI cho email
   pdf: "parseWithGemini", // Dùng AI cho PDF
@@ -220,15 +212,6 @@ function getParsers() {
       website: ""
     },
     {
-      name: "CÔNG TY CỔ PHẦN LƯƠNG THỰC THÀNH PHỐ HỒ CHÍ MINH",
-      mst: "0300559014",
-      email: "parseVNPTGeneric",
-      pdf: "parsePetrolimex_PDF",
-      parse: "parseVNPTFoodcosa",
-      xml: "parseDefault_XML",
-      website: ""
-    },
-    {
       name: "CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ HIỆP QUẾ",
       mst: "0303172752-011",
       email: "parsePetrolimex",
@@ -274,6 +257,8 @@ function getParsers() {
     },
     {
       name: "PETROLIMEX",
+      // TODO: Bổ sung MST (PETROLIMEX là tên chung, cần xác định MST cụ thể)
+      mst: "",
       email: "parsePetrolimex",
       pdf: "parsePetrolimex_PDF",
       parse: "parsePetrolimex",
@@ -282,6 +267,8 @@ function getParsers() {
     },
     {
       name: "CÔNG TY TNHH MTV XĂNG DẦU BÌNH THUẬN",
+      // TODO: Bổ sung MST
+      mst: "",
       email: "parsePetrolimex",
       pdf: "parsePetrolimex_PDF",
       parse: "parsePetrolimex",
@@ -459,6 +446,7 @@ function getParsers() {
     },
     {
       name: "CÔNG TY CỔ PHẦN THƯƠNG MẠI VÀ DỊCH VỤ CẦN GIỜ",
+      mst: "0302596283",
       email: "parseVNPTCanGio_Email",
       pdf: "parseVNPTCanGio_PDF",
       parse: "",
@@ -467,6 +455,8 @@ function getParsers() {
     },
     {
       name: "CÔNG TY TNHH DỊCH VỤ PHÁT TRIỂN VIỄN THÔNG BẢO CHÂU",
+      // TODO: Bổ sung MST
+      mst: "",
       email: "",
       pdf: "parseEasyInvoiceBaoChau_PDF",
       parse: "",
@@ -474,6 +464,8 @@ function getParsers() {
       website: ""
     },
     {
+      // TODO: Bổ sung tên công ty
+      name: "",
       mst: "0317139145",
       email: "",
       pdf: "",
@@ -507,6 +499,7 @@ function getParsers() {
   },  
   { 
     name: "CÔNG TY TNHH MẮT VIỆT GROUP", 
+    // TODO: Bổ sung MST
     mst: "", 
     email: "parseVNPTGeneric",
     pdf: "", 
